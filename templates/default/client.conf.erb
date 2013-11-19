@@ -1,25 +1,11 @@
-client
-dev tun
-proto <%= node['openvpn']['proto'] %>
-remote <%= node['openvpn']['gateway'] %> <%= node['openvpn']['port'] %>
-resolv-retry infinite
-nobind
-persist-key
-persist-tun
-ca ca.crt
-cert <%= @username %>.crt
-key <%= @username %>.key
-comp-lzo
-verb 3
-
-<% if @type == "client" -%>
+<% if @type == "client" || @type == "client-bridge" -%>
 client
 <% end -%>
 
 
 port <%= @port %>
 proto <%= @proto %>
-<% if @type == "server-bridge" -%>
+<% if @type == "server-bridge" || @type == "client-bridge" -%>
 dev tap<%= @interface_num %>
 <% else -%>
 dev tun<%= @interface_num %>
@@ -38,16 +24,15 @@ max-clients <%= @max_clients %>
 comp-lzo
 
 local <%= @local %>
+remote <%= @remote %>
 
 <% if @routes -%>
 <% @routes.each do |route| -%>
 <%= route %>
 <% end -%>
 <% end -%>
-<% if @script_security > 1 -%>
-up /etc/openvpn/server.up.sh
-<% end -%>
 
+<% if @type == "server" || @type == "server-bridge" -%>
 <% if @dhcp_dns -%>
 push "dhcp-option DNS <%= @dhcp_dns %>"
 <% end -%>
@@ -61,6 +46,7 @@ duplicate-cn
 client-config-dir ccd
 route <%= @client_subnet_route %>
 <% end -%>
+<% end -%>
 
 # Keys and certificates.
 ca   <%= @key_dir %>/ca.crt
@@ -71,7 +57,12 @@ dh   <%= @key_dir %>/dh<%= @key_size %>.pem
 tls-auth <%= @tls_key %> 0
 <% end -%>
 
-ifconfig-pool-persist /etc/openvpn/ipp.txt
+<% if @tls_cipher -%>
+tls-cipher <%= @tls_cipher %> 0
+<% end -%>
+<% if @cipher -%>
+cipher <%= @cipher %> 0
+<% end -%>
 
 <% if @type == "server" -%>
 <%= @type %> <%= @subnet %> <%= @netmask %>
@@ -92,4 +83,7 @@ log-append  <%= @log %>
 verb <%= @verb %>  # don't spam the log with messages.
 mute <%= @mute %>  # suppress identical messages > 10 occurances.
 
+<% if @type == "server" || @type == "server-bridge" -%>
+ifconfig-pool-persist /etc/openvpn/ipp.txt
 script-security <%= @script_security %>
+<% end -%>

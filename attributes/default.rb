@@ -17,11 +17,14 @@
 # limitations under the License.
 #
 
-default['openvpn']['remote']          = "unset"
+default['openvpn']['local']           = "0.0.0.0"
+default['openvpn']['remote']          = "0.0.0.0"
 default['openvpn']['proto']           = 'udp'
 default['openvpn']['port']            = '1194'
 default['openvpn']['type']            = 'client'
 default['openvpn']['log']             = '/var/log/openvpn.log'
+default['openvpn']['fragment']        = nil
+default['openvpn']['mssfix']          = nil
 
 default["openvpn"]["ns_cert_type"]    = "server"
 default["openvpn"]["tls_cipher"]      = "DHE-RSA-AES256-SHA"

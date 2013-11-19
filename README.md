@@ -7,8 +7,6 @@ Installs OpenVPN and sets up a fairly basic configuration. Since OpenVPN is very
 
 Requirements
 ------------
-OpenSSL 0.9.7 or later and OpenSSL bindings for Ruby
-
 ### Platform
 - Debian 6.0
 - Ubuntu 10.04+

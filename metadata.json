@@ -30,7 +30,7 @@
       "description": "Local interface (ip) to listen on",
       "default": "ipaddress",
       "recipes": [
-        "openvpn::default"
+        "openvpnc::default"
       ]
     },
     "openvpn/proto": {
@@ -38,7 +38,7 @@
       "description": "UDP or TCP",
       "default": "udp",
       "recipes": [
-        "openvpn::default"
+        "openvpnc::default"
       ]
     },
     "openvpn/type": {
@@ -46,7 +46,7 @@
       "description": "client, server or server-bridge",
       "default": "server",
       "recipes": [
-        "openvpn::default"
+        "openvpnc::default"
       ]
     },
     "openvpn/remote": {
@@ -54,7 +54,15 @@
       "description": "Remote OpenVPN server IP to connect to",
       "default": "ipaddress",
       "recipes": [
-        "openvpn::default"
+        "openvpnc::default"
+      ]
+    },
+    "openvpn/ns_cert_type": {
+      "display_name": "Accept Netscape certificates",
+      "description": "Remote OpenVPN server IP to connect to",
+      "default": "server",
+      "recipes": [
+        "openvpnc::default"
       ]
     },
     "openvpn/port": {
@@ -62,7 +70,7 @@
       "description": "Port to listen on, defaults to 1194",
       "default": "1194",
       "recipes": [
-        "openvpn::default"
+        "openvpnc::default"
       ]
     },
     "openvpn/log": {
@@ -70,7 +78,35 @@
       "description": "OpenVPN Server log file. Default /var/log/openvpn.log",
       "default": "/var/log/openvpn.log",
       "recipes": [
-        "openvpn::default"
+        "openvpnc::default"
+      ]
+    },
+    "openvpn/fragment": {
+      "display_name": "Max Fragment",
+      "description": "Max IP Fragment size",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpn/mssfix": {
+      "display_name": "Max Segment Size Fix",
+      "description": "Max MSS size, for if the Path MTU fails",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpn/tls_cipher": {
+      "display_name": "TLS Cipher type",
+      "description": "TLS Cipher type",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpn/cipher": {
+      "display_name": "Cipher type",
+      "description": "Cipher type",
+      "recipes": [
+        "openvpnc::default"
       ]
     },
     "openvpn/key_dir": {
@@ -80,22 +116,6 @@
       "recipes": [
         "openvpn::default",
         "openvpn::users"
-      ]
-    },
-    "openvpn/signing_ca_cert": {
-      "display_name": "OpenVPN CA Certificate",
-      "description": "CA certificate for signing, default /etc/openvpn/keys/ca.crt",
-      "default": "/etc/openvpn/keys/ca.crt",
-      "recipes": [
-        "openvpn::default"
-      ]
-    },
-    "openvpn/signing_ca_key": {
-      "display_name": "OpenVPN CA key",
-      "description": "CA key for signing, default /etc/openvpn/keys/ca.key",
-      "default": "/etc/openvpn/keys/ca.key",
-      "recipes": [
-        "openvpn::default"
       ]
     },
     "openvpn/routes": {

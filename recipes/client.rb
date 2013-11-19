@@ -29,7 +29,7 @@ directory key_dir do
   mode  '0700'
 end
 
-ovpnclient 'client' do
+openvpnc_ovpnclient 'client' do
   port node['openvpn']['port']
   proto node['openvpn']['proto']
   type node['openvpn']['type']
@@ -43,7 +43,6 @@ ovpnclient 'client' do
   routes node['openvpn']['routes']
   script_security node['openvpn']['script_security']
   key_dir node['openvpn']['key_dir']
-  key_size node['openvpn']['key']['size']
   subnet node['openvpn']['subnet']
   netmask node['openvpn']['netmask']
   user node['openvpn']['user']
