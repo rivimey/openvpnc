@@ -1,0 +1,116 @@
+{
+  "name": "openvpn_client",
+  "version": "2.1.0",
+  "description": "Installs and configures openvpn and includes rake tasks for managing certs",
+  "maintainer": "eLife Sciences",
+  "maintainer_email": "cookbooks@opscode.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "openvpn/local": {
+      "display_name": "OpenVPN Local",
+      "description": "Local interface (ip) to listen on",
+      "default": "ipaddress",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/proto": {
+      "display_name": "OpenVPN Protocol",
+      "description": "UDP or TCP",
+      "default": "udp",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/type": {
+      "display_name": "OpenVPN Type",
+      "description": "client, server or server-bridge",
+      "default": "server",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/remote": {
+      "display_name": "OpenVPN remote IP",
+      "description": "Remote OpenVPN server IP to connect to",
+      "default": "ipaddress",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/port": {
+      "display_name": "OpenVPN Listen Port",
+      "description": "Port to listen on, defaults to 1194",
+      "default": "1194",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/log": {
+      "display_name": "OpenVPN Log File",
+      "description": "OpenVPN Server log file. Default /var/log/openvpn.log",
+      "default": "/var/log/openvpn.log",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/key_dir": {
+      "display_name": "OpenVPN Key Directory",
+      "description": "Location to store keys, certificates and related files. Default /etc/openvpn/keys",
+      "default": "/etc/openvpn/keys",
+      "recipes": [
+        "openvpn::default",
+        "openvpn::users"
+      ]
+    },
+    "openvpn/signing_ca_cert": {
+      "display_name": "OpenVPN CA Certificate",
+      "description": "CA certificate for signing, default /etc/openvpn/keys/ca.crt",
+      "default": "/etc/openvpn/keys/ca.crt",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/signing_ca_key": {
+      "display_name": "OpenVPN CA key",
+      "description": "CA key for signing, default /etc/openvpn/keys/ca.key",
+      "default": "/etc/openvpn/keys/ca.key",
+      "recipes": [
+        "openvpn::default"
+      ]
+    },
+    "openvpn/routes": {
+      "display_name": "OpenVPN Routes",
+      "description": "Array of routes to add as push statements in the server.conf. Default is empty",
+      "type": "array",
+      "recipes": [
+        "openvpn::default"
+      ]
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "openvpn": "Installs and configures openvpn",
+    "openvpn::client": ""
+  }
+}
