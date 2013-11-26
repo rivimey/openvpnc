@@ -17,41 +17,41 @@
 # limitations under the License.
 #
 
-key_dir  = node['openvpn']['key_dir']
+# key_dir  = node['openvpn']['key_dir']
 
-package 'openvpn' do
-  action :install
-end
-
-directory key_dir do
-  owner 'root'
-  group 'root'
-  mode  '0700'
-end
-
-openvpnc_ovpnclient 'client' do
-  port node['openvpn']['port']
-  proto node['openvpn']['proto']
-  type node['openvpn']['type']
-  local node['openvpn']['local']
-  remote node['openvpn']['remote']
-  mssfix node['openvpn']['mssfix']
-  fragment node['openvpn']['fragment']
-  ns_cert_type node['openvpn']['ns_cert_type']
-  tls_cipher node['openvpn']['tls_cipher']
-  cipher node['openvpn']['cipher']
-  routes node['openvpn']['routes']
-  script_security node['openvpn']['script_security']
-  key_dir node['openvpn']['key_dir']
-  subnet node['openvpn']['subnet']
-  netmask node['openvpn']['netmask']
-  user node['openvpn']['user']
-  group node['openvpn']['group']
-  log node['openvpn']['log']
-
-  notifies :restart, 'service[openvpn]'
-end
-
-service 'openvpn' do
-  action [:enable, :start]
-end
+#package 'openvpn' do
+#  action :install
+#end
+#
+#directory key_dir do
+#  owner 'root'
+#  group 'root'
+#  mode  '0700'
+#end
+#
+#openvpnc_ovpnclient 'client' do
+#  port node['openvpn']['port']
+#  proto node['openvpn']['proto']
+#  type node['openvpn']['type']
+#  local node['openvpn']['local']
+#  remote node['openvpn']['remote']
+#  mssfix node['openvpn']['mssfix']
+#  fragment node['openvpn']['fragment']
+#  ns_cert_type node['openvpn']['ns_cert_type']
+#  tls_cipher node['openvpn']['tls_cipher']
+#  cipher node['openvpn']['cipher']
+#  routes node['openvpn']['routes']
+#  script_security node['openvpn']['script_security']
+#  key_dir node['openvpn']['key_dir']
+#  subnet node['openvpn']['subnet']
+#  netmask node['openvpn']['netmask']
+#  user node['openvpn']['user']
+#  group node['openvpn']['group']
+#  log node['openvpn']['log']
+#
+#  notifies :restart, 'service[openvpn]'
+#end
+#
+#service 'openvpn' do
+#  action [:enable, :start]
+#end

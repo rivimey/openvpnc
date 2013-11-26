@@ -18,6 +18,8 @@
 
 use_inline_resources
 
+# OpenVPN Configuration directory
+
 action :create do
   vars = {
     :log => new_resource.log,
@@ -48,20 +50,35 @@ action :create do
     :client_subnet_route => new_resource.client_subnet_route,
     :max_clients => new_resource.max_clients,
     :status_log => new_resource.status_log,
+    :config_dir => new_resource.config_dir,
     :plugins => new_resource.plugins
   }
 
-  template "/etc/openvpn/#{new_resource.name}.conf" do
+  directory new_resource.config_dir do
+    owner 'root'
+    group 'root'
+    mode  '0700'
+  end
+
+  template "#{new_resource.config_dir}/#{new_resource.name}.conf" do
     source 'client.conf.erb'
     owner 'root'
     group 'root'
     mode 0644
     variables vars
   end
+
 end
 
 action :delete do
-  file "/etc/openvpn/#{new_resource.name}.conf" do
+  file "#{new_resource.config_dir}/#{new_resource.name}.conf" do
     action :delete
   end
+end
+
+def load_current_resource
+  @current_resource ||= Chef::Resource::File.new("#{new_resource.config_dir}/#{new_resource.name}.conf")
+  @current_resource.name ||= new_resource.name
+  @current_resource.path("#{new_resource.config_dir}/#{new_resource.name}.conf")
+  @current_resource
 end

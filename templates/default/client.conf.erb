@@ -45,23 +45,29 @@ duplicate-cn
 <% if @client_subnet_route -%>
 client-config-dir ccd
 route <%= @client_subnet_route %>
-<% end -%>
+<% if @type == "server" || @type == "server-bridge" -%>
 <% end -%>
 
 # Keys and certificates.
+<% if @type == "server" || @type == "server-bridge" -%>
 ca   <%= @key_dir %>/ca.crt
-key  <%= @key_dir %>/server.key # This file should be kept secret.
+key  <%= @key_dir %>/server.key
 cert <%= @key_dir %>/server.crt
 dh   <%= @key_dir %>/dh<%= @key_size %>.pem
+<% if @type == "client" || @type == "client-bridge" -%>
+ca   <%= @key_dir %>/ca.crt
+cert <%= @key_dir %>/client.crt
+<% end -%>
+
 <% if @tls_key -%>
 tls-auth <%= @tls_key %> 0
 <% end -%>
 
 <% if @tls_cipher -%>
-tls-cipher <%= @tls_cipher %> 0
+tls-cipher <%= @tls_cipher %>
 <% end -%>
 <% if @cipher -%>
-cipher <%= @cipher %> 0
+cipher <%= @cipher %>
 <% end -%>
 
 <% if @type == "server" -%>
@@ -80,8 +86,8 @@ status <%= @status_log %>
 
 # logging settings.
 log-append  <%= @log %>
-verb <%= @verb %>  # don't spam the log with messages.
-mute <%= @mute %>  # suppress identical messages > 10 occurances.
+verb <%= @verb %>
+mute <%= @mute %>
 
 <% if @type == "server" || @type == "server-bridge" -%>
 ifconfig-pool-persist /etc/openvpn/ipp.txt

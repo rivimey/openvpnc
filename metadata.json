@@ -25,7 +25,7 @@
   "replacing": {
   },
   "attributes": {
-    "openvpn/local": {
+    "openvpnc/local": {
       "display_name": "OpenVPN Local",
       "description": "Local interface (ip) to listen on",
       "default": "ipaddress",
@@ -33,7 +33,7 @@
         "openvpnc::default"
       ]
     },
-    "openvpn/proto": {
+    "openvpnc/proto": {
       "display_name": "OpenVPN Protocol",
       "description": "UDP or TCP",
       "default": "udp",
@@ -41,7 +41,7 @@
         "openvpnc::default"
       ]
     },
-    "openvpn/type": {
+    "openvpnc/type": {
       "display_name": "OpenVPN Type",
       "description": "client, server or server-bridge",
       "default": "server",
@@ -49,7 +49,7 @@
         "openvpnc::default"
       ]
     },
-    "openvpn/remote": {
+    "openvpnc/remote": {
       "display_name": "OpenVPN remote IP",
       "description": "Remote OpenVPN server IP to connect to",
       "default": "ipaddress",
@@ -65,7 +65,7 @@
         "openvpnc::default"
       ]
     },
-    "openvpn/port": {
+    "openvpnc/port": {
       "display_name": "OpenVPN Listen Port",
       "description": "Port to listen on, defaults to 1194",
       "default": "1194",
@@ -73,7 +73,7 @@
         "openvpnc::default"
       ]
     },
-    "openvpn/log": {
+    "openvpnc/log": {
       "display_name": "OpenVPN Log File",
       "description": "OpenVPN Server log file. Default /var/log/openvpn.log",
       "default": "/var/log/openvpn.log",
@@ -81,35 +81,7 @@
         "openvpnc::default"
       ]
     },
-    "openvpn/fragment": {
-      "display_name": "Max Fragment",
-      "description": "Max IP Fragment size",
-      "recipes": [
-        "openvpnc::default"
-      ]
-    },
-    "openvpn/mssfix": {
-      "display_name": "Max Segment Size Fix",
-      "description": "Max MSS size, for if the Path MTU fails",
-      "recipes": [
-        "openvpnc::default"
-      ]
-    },
-    "openvpn/tls_cipher": {
-      "display_name": "TLS Cipher type",
-      "description": "TLS Cipher type",
-      "recipes": [
-        "openvpnc::default"
-      ]
-    },
-    "openvpn/cipher": {
-      "display_name": "Cipher type",
-      "description": "Cipher type",
-      "recipes": [
-        "openvpnc::default"
-      ]
-    },
-    "openvpn/key_dir": {
+    "openvpnc/key_dir": {
       "display_name": "OpenVPN Key Directory",
       "description": "Location to store keys, certificates and related files. Default /etc/openvpn/keys",
       "default": "/etc/openvpn/keys",
@@ -118,7 +90,35 @@
         "openvpn::users"
       ]
     },
-    "openvpn/routes": {
+    "openvpnc/fragment": {
+      "display_name": "Max Fragment",
+      "description": "Max IP Fragment size",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpnc/mssfix": {
+      "display_name": "Max Segment Size Fix",
+      "description": "Max MSS size, for if the Path MTU fails",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpnc/tls_cipher": {
+      "display_name": "TLS Cipher type",
+      "description": "TLS Cipher type",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpnc/cipher": {
+      "display_name": "Cipher type",
+      "description": "Cipher type",
+      "recipes": [
+        "openvpnc::default"
+      ]
+    },
+    "openvpnc/routes": {
       "display_name": "OpenVPN Routes",
       "description": "Array of routes to add as push statements in the server.conf. Default is empty",
       "type": "array",

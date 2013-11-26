@@ -16,37 +16,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+require 'resolv'
+
 actions :create, :delete
 default_action :create
 
-attribute :name, :kind_of => String, :name_attribute => true
-attribute :port, :kind_of => String
-attribute :proto, :kind_of => String
-attribute :type, :kind_of => String, :equal_to => [ "server", "client", "server-bridge", "client-bridge", ]
-attribute :local, :kind_of => String, :regex => Resolv::IPv4::Regex
-attribute :remote, :kind_of => String, :regex => Resolv::IPv4::Regex
-attribute :routes, :kind_of => Array
-attribute :script_security, :kind_of => Integer
-attribute :key_dir, :kind_of => String
-attribute :key_size, :kind_of => Integer
-attribute :subnet, :kind_of => String, :regex => Resolv::IPv4::Regex
-attribute :netmask, :kind_of => String, :regex => Resolv::IPv4::Regex
-attribute :user, :kind_of => String
-attribute :group, :kind_of => String
-attribute :log, :kind_of => String
-attribute :fragment, :kind_of => Integer, :default => 1400
-attribute :mssfix, :kind_of => Integer, :default => 1400
-attribute :verb, :kind_of => Integer, :default => 1
-attribute :mute, :kind_of => Integer, :default => 10
-attribute :dhcp_dns, :kind_of => String
-attribute :dhcp_domain, :kind_of => String
-attribute :ns_cert_type, :kind_of => String
-attribute :tls_key, :kind_of => String
-attribute :tls_cipher, :kind_of => String
-attribute :cipher, :kind_of => String
-attribute :duplicate_cn, :kind_of => [TrueClass, FalseClass], :default => false
-attribute :interface_num, :kind_of => Integer
+attribute :name,                :kind_of => String, :name_attribute => true
+attribute :port,                :kind_of => String
+attribute :proto,               :kind_of => String
+attribute :type,                :kind_of => String, :equal_to => [ "server", "client", "server-bridge", "client-bridge", ]
+attribute :local,               :kind_of => String, :regex => Resolv::IPv4::Regex
+attribute :remote,              :kind_of => String, :regex => Resolv::IPv4::Regex
+attribute :routes,              :kind_of => Array
+attribute :script_security,     :kind_of => Integer
+attribute :key_dir,             :kind_of => String
+attribute :key_size,            :kind_of => Integer
+attribute :subnet,              :kind_of => String, :regex => Resolv::IPv4::Regex
+attribute :netmask,             :kind_of => String, :regex => Resolv::IPv4::Regex
+attribute :user,                :kind_of => String
+attribute :group,               :kind_of => String
+attribute :log,                 :kind_of => String
+attribute :fragment,            :kind_of => Integer, :default => 1400
+attribute :mssfix,              :kind_of => Integer, :default => 1400
+attribute :verb,                :kind_of => Integer, :default => 1
+attribute :mute,                :kind_of => Integer, :default => 10
+attribute :dhcp_dns,            :kind_of => String
+attribute :dhcp_domain,         :kind_of => String
+attribute :ns_cert_type,        :kind_of => String
+attribute :tls_key,             :kind_of => String
+attribute :tls_cipher,          :kind_of => String
+attribute :cipher,              :kind_of => String
+attribute :duplicate_cn,        :kind_of => [TrueClass, FalseClass], :default => false
+attribute :interface_num,       :kind_of => Integer
 attribute :client_subnet_route, :kind_of => String
-attribute :max_clients, :kind_of => Integer
-attribute :status_log, :kind_of => String, :default => '/etc/openvpn/openvpn-status.log'
-attribute :plugins, :kind_of => Array, :default => []
+attribute :max_clients,         :kind_of => Integer
+attribute :config_dir,          :kind_of => String, :default => '/etc/openvpn'
+attribute :status_log,          :kind_of => String, :default => '/etc/openvpn/openvpn-status.log'
+attribute :plugins,             :kind_of => Array, :default => []
+
