@@ -60,7 +60,7 @@ cert <%= @key_dir %>/client.crt
 <% end -%>
 
 <% if @tls_key -%>
-tls-auth <%= @tls_key %> 0
+tls-auth <%= @tls_key %> 1
 <% end -%>
 
 <% if @tls_cipher -%>
