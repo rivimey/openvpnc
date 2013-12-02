@@ -44,6 +44,9 @@ attribute :mute,                :kind_of => Integer, :default => 10
 attribute :dhcp_dns,            :kind_of => String
 attribute :dhcp_domain,         :kind_of => String
 attribute :ns_cert_type,        :kind_of => String
+attribute :ca_cert,             :kind_of => String
+attribute :client_cert,         :kind_of => String
+attribute :client_key,          :kind_of => String
 attribute :tls_key,             :kind_of => String
 attribute :tls_cipher,          :kind_of => String
 attribute :cipher,              :kind_of => String

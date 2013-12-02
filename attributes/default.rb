@@ -12,13 +12,16 @@ default['openvpnc']['log']             = '/var/log/openvpn.log'
 default['openvpnc']['fragment']        = nil
 default['openvpnc']['mssfix']          = nil
 
-default['openvpnc']['ns_cert_type']    = "server"
+default['openvpnc']['key_dir']         = '/etc/openvpn/keys'
+default['openvpnc']['ca_cert']         = "ca.crt"
+default['openvpnc']['tls_key']         = "ta.key"
+default['openvpnc']['client_key']      = "client.key"
+default['openvpnc']['client_cert']     = "client.crt"
 default['openvpnc']['tls_cipher']      = "DHE-RSA-AES256-SHA"
 default['openvpnc']['cipher']          = "AES-256-CBC"
 
-default['openvpnc']['key_dir']         = '/etc/openvpn/keys'
-default['openvpnc']['signing_ca_key']  = "#{node["openvpnc"]["key_dir"]}/ca.key"
-default['openvpnc']['signing_ca_cert'] = "#{node["openvpnc"]["key_dir"]}/ca.crt"
+default['openvpnc']['ns_cert_type']    = "server"
+
 default['openvpnc']['routes']          = []
 default['openvpnc']['user']            = 'nobody'
 default['openvpnc']['group']           = case node['platform_family']
